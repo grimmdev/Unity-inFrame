@@ -19,17 +19,6 @@ public class InFrameManager : MonoBehaviour
     private static extern void SetURLInternal(string str);
 #endif
 
-    private string foo = "foo";
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Initialize();
-        //SetURL("https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik");
-        SetData($"<body>{foo}</body>");
-        SetPassthrough();
-    }
-
     public void Initialize()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -48,6 +37,13 @@ public class InFrameManager : MonoBehaviour
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
         SetDataInternal(data);
+#endif
+    }
+
+    public void SetTemplate(TextAsset asset)
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        SetDataInternal(asset.text);
 #endif
     }
 

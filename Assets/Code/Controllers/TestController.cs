@@ -9,6 +9,12 @@ public class TestController : MonoBehaviour
 
     private int count = 0;
 
+    private void Awake()
+    {
+        frame.Initialize();
+        frame.SetPassthrough();
+    }
+
     private void Start()
     {
         frame.SetData($"<p style=\"color: white;\">{count} times clicked!</p>");
